@@ -8,15 +8,44 @@ export class Display extends Component {
         super();
         this.state = {
             ball: 0,
-            strike: 0
+            strike: 0,
         }
     }
 
     ballHandler = ev => {
         ev.preventDefault();
+        if (this.state.ball < 4) {
+            this.setState({
+                ball: this.state.ball + 1
+            });
+        } else if (this.state.ball === 4) {
+            this.setState({
+                ball: 0,
+                strike: 0
+            });
+        }
+    }
+
+    strikeHandler = ev => {
+        ev.preventDefault();
+        if (this.state.strike < 3) {
+            this.setState({
+                strike: this.state.strike + 1
+            });
+        } else if (this.state.strike === 3) {
+            this.setState({
+                ball: 0,
+                strike: 0
+            });
+        }
+    }
+
+    hitHandler = ev => {
+        ev.preventDefault();
         this.setState({
-            ball: this.state.ball + 1
-        });
+            ball: 0,
+            strike: 0
+        }); 
     }
 
     render() {
@@ -28,7 +57,10 @@ export class Display extends Component {
                 <p>Strike Count</p>
                 <p data-testid="strikeCount">{this.state.strike}</p>
                 <Dashboard
-                    ballHandler={this.ballHandler} />
+                    ballHandler={this.ballHandler} 
+                    strikeHandler={this.strikeHandler}
+                    hitHandler={this.hitHandler}
+                />
             </div>
         )
     }

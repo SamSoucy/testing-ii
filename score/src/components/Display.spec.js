@@ -16,8 +16,8 @@ describe("The Display", () => {
 
     it("display's strike count", () => {
         const display = render(<Display />);
-        const strike = display.getByTestId(/strikeCount/i);
-        expect(strike).toHaveTextContent('0');
+        const strike = display.getByTestId(/strikecount/i);
+        expect(strike).toHaveTextContent("0");
     })
 })
 
